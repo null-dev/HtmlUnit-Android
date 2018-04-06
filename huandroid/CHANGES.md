@@ -1,3 +1,4 @@
+# Changes by class
 - `netscape.javascript.JSObject`: Remove `getWindow` method
 - `com.gargoylesoftware.htmlunit.html.DoTypeProcessor`:
     - Un-inherit: `ClipboardOwner`
