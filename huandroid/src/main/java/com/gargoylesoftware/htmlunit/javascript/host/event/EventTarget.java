@@ -22,6 +22,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlLabel;
 import com.gargoylesoftware.htmlunit.javascript.SimpleScriptable;
 import com.gargoylesoftware.htmlunit.javascript.configuration.JsxClass;
+import com.gargoylesoftware.htmlunit.javascript.configuration.JsxClasses;
 import com.gargoylesoftware.htmlunit.javascript.configuration.JsxConstructor;
 import com.gargoylesoftware.htmlunit.javascript.configuration.JsxFunction;
 import com.gargoylesoftware.htmlunit.javascript.host.Window;
@@ -44,13 +45,17 @@ import static com.gargoylesoftware.htmlunit.BrowserVersionFeatures.JS_EVENT_WIND
 import static com.gargoylesoftware.htmlunit.javascript.configuration.SupportedBrowser.CHROME;
 import static com.gargoylesoftware.htmlunit.javascript.configuration.SupportedBrowser.EDGE;
 import static com.gargoylesoftware.htmlunit.javascript.configuration.SupportedBrowser.FF;
+import static com.gargoylesoftware.htmlunit.javascript.configuration.SupportedBrowser.IE;
 
 /**
  * A JavaScript object for {@code EventTarget}.
  *
  * @author Ahmed Ashour
  */
-@JsxClass({CHROME, FF, EDGE})
+
+@JsxClasses({
+@JsxClass({CHROME, FF, EDGE}),
+@JsxClass(isJSObject = false, value = IE)})
 public class EventTarget extends SimpleScriptable {
 
     private EventListenersContainer eventListenersContainer_;

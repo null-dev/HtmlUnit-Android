@@ -46,8 +46,6 @@
     - In the `determineWidthAndHeight` method, set `width_` and `height_` to 0.
     - Make the `readImageIfNeeded` method do nothing
     - Make the `ImageData.close` method do nothing
-- `com.gargoylesoftware.htmlunit.javascript.host.event.EventTarget`:
-    - Remove the last `JsxClass` annotation
 - `com.gargoylesoftware.htmlunit.javascript.configuration.JsxClass`:
     - Remove the `Repeatable` annotation
 - Compress all repeating `JsxClass` annotations into single `JsxClasses` annotations
