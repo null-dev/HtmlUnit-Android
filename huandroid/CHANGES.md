@@ -1,0 +1,57 @@
+- `netscape.javascript.JSObject`: Remove `getWindow` method
+- `com.gargoylesoftware.htmlunit.html.DoTypeProcessor`:
+    - Un-inherit: `ClipboardOwner`
+    - Make `getClipboardContent` return an empty string
+    - Make `setClipboardContent` do nothing
+    - Remove `lostOwnership` method
+- `com.gargoylesoftware.htmlunit.html.HtmlApplet`: Remove class
+- `com.gargoylesoftware.htmlunit.html.applets`: Remove package
+- `com.gargoylesoftware.htmlunit.javascript.host.dom`:
+    - The `isMatching` method in the anonymous class in the `getApplets` method now always returns false
+- `com.gargoylesoftware.htmlunit.AppletConfirmHandler`: Remove class
+- `com.gargoylesoftware.htmlunit.html.HtmlObject`:
+    - Remove `getApplet` method
+    - Remove `setupAppletIfNeeded` method
+- `com.gargoylesoftware.htmlunit.javascript.host.html.HTMLObjectElement`:
+    - Remove `setDomNode` method
+    - Remove `createAppletMethodAndProperties` method
+- `com.gargoylesoftware.htmlunit.WebClient`:
+    - Remove `setAppletConfirmHandler` method
+    - Remove `getAppletConfirmHandler` method
+    - Remove `appletConfirmHandler_` field
+- `com.gargoylesoftware.htmlunit.javascript.host.html.HTMLDocument`:
+    - In the `getItComputeElements` method, remove the `elt instanceof HtmlApplet` condition
+- `com.gargoylesoftware.htmlunit.html.HtmlSerializer`:
+    - In the `appendNode` method, remove the `node instanceof HtmlApplet && appletEnabled_` branch
+    - Remove the `appendApplet` method
+- `com.gargoylesoftware.htmlunit.javascript.host.xml.XMLSerializer`:
+    - In the `NON_EMPTY_TAGS` set, remove the `HtmlApplet.TAG_NAME` element
+- `com.gargoylesoftware.htmlunit.javascript.host.html.HTMLAppletElement`: Remove class
+- `com.gargoylesoftware.htmlunit.javascript.configuration.JavaScriptConfiguration`:
+    - In the `CLASSES_` array, remove the `HTMLAppletElement.class` element
+- `com.gargoylesoftware.htmlunit.html.HtmlPage`:
+    - In the `getAttributeValue` method, remove the `element instanceof HtmlApplet` condition
+- `com.gargoylesoftware.htmlunit.html.DefaultElementFactory`:
+    - In the `SUPPORTED_TAGS_` list, remove the `HtmlApplet.TAG_NAME` element
+    - In the `createElementNS` method, remove the `HtmlApplet.TAG_NAME` case in the switch
+- `com.gargoylesoftware.htmlunit.util.WebClientUtils`: Remove class
+- `com.gargoylesoftware.htmlunit.util.DebuggingWebConnection`: Remove class
+- `com.gargoylesoftware.htmlunit.SgmlPage`:
+    - In the `getElementsByTagNameNS` method, replace all references to `Comparator.nullsFirst` with `ComparatorShim.nullsFirst`
+- `com.gargoylesoftware.htmlunit.javascript.host.canvas.rendering.AwtRenderingBackend`: Remove class
+- `com.gargoylesoftware.htmlunit.javascript.host.canvas.CanvasRenderingContext2D`:
+    - In the `getRenderingBackend` method, replace the `GAEUtils.isGaeMode()` if statement with a direct assignment of the `GaeRenderingBackend` to the `renderBackend_` variable.
+- `com.gargoylesoftware.htmlunit.html.HtmlImage`:
+    - In the `determineWidthAndHeight` method, set `width_` and `height_` to 0.
+    - Make the `readImageIfNeeded` method do nothing
+    - Make the `ImageData.close` method do nothing
+- `com.gargoylesoftware.htmlunit.javascript.host.event.EventTarget`:
+    - Remove the last `JsxClass` annotation
+- `com.gargoylesoftware.htmlunit.javascript.configuration.JsxClass`:
+    - Remove the `Repeatable` annotation
+- Compress all repeating `JsxClass` annotations into single `JsxClasses` annotations
+- Replace all instances of `org.apache.http` with `cz.msebara.android.httpclient`
+- `com.gargoylesoftware.htmlunit.HttpWebConnection`:
+    - In the method `createConnectionManager`:
+        - Replace `getField(builder, "sslContext")` with `getField(builder, "sslcontext")`
+        - Replace `getField(builder, "dnsResolver")` with `null`
