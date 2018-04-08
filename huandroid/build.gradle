@@ -1,29 +1,24 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: "com.jfrog.bintray"
+
+group = 'xyz.nulldev.huandroid'
+version = "2.30.01"
 
 android {
     compileSdkVersion 27
 
-
-
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+
+        // HtmlUnitVersion + two digit port version
+        versionCode version.replaceAll('\\.','') as Integer
+        versionName version
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+        consumerProguardFiles 'proguard-rules.pro'
     }
 
     compileOptions {
@@ -67,3 +62,45 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    failOnError = false
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    publish = true
+    user = properties.getProperty('bintray.user') ?: System.getenv('BINTRAY_USER')
+    key = properties.getProperty('bintray.apikey') ?: System.getenv('BINTRAY_API_KEY')
+
+    pkg {
+        configurations = ['archives']
+        
+        repo = 'maven'
+        name = 'HtmlUnit-Android'
+        licenses = ['Apache-2.0', 'GPL-2.0']
+        vcsUrl = 'https://github.com/null-dev/HtmlUnit-Android.git'
+        publicDownloadNumbers = true
+    }
+}
+
+bintrayUpload.dependsOn install

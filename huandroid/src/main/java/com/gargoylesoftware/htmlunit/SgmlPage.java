@@ -34,7 +34,6 @@ import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
-import org.w3c.dom.traversal.DocumentTraversal;
 import org.w3c.dom.traversal.NodeFilter;
 
 import java.io.IOException;
@@ -45,6 +44,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import xyz.nulldev.huandroid.ComparatorShim;
+import xyz.nulldev.huandroid.DocumentTraversalShim;
 
 /**
  * A basic class of Standard Generalized Markup Language (SGML), e.g. HTML and XML.
@@ -52,7 +52,7 @@ import xyz.nulldev.huandroid.ComparatorShim;
  * @author Ahmed Ashour
  * @author Ronald Brill
  */
-public abstract class SgmlPage extends DomNode implements Page, Document, DocumentTraversal {
+public abstract class SgmlPage extends DomNode implements Page, Document, DocumentTraversalShim {
 
     private DocumentType documentType_;
     private final WebResponse webResponse_;
