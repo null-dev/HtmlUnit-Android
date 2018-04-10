@@ -17,7 +17,11 @@ A port of HtmlUnit to Android (currently based on HtmlUnit 2.30)
 - HtmlUnit is so large that to include it, you must enable multidex!
 
 ## Usage
-Maven package coming soon!
+1. Add the following to your `build.gradle`:
+   ```
+   implementation 'xyz.nulldev.huandroid:huandroid:2.30.01'
+   ```
+2. Check out http://htmlunit.sourceforge.net/gettingStarted.html for code examples. The usage for HtmlUnit Android is exactly the same as the usage for the original version of HtmlUnit!
 
 ## How did you do this?
 You can find a log of all the changes I performed to the original HtmlUnit source code in [CHANGES.md](https://github.com/null-dev/HtmlUnit-Android/blob/master/huandroid/CHANGES.md)
